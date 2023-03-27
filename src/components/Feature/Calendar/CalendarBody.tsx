@@ -1,4 +1,11 @@
-import { getYear, getMonth, getDaysInMonth, getDay } from "date-fns";
+import {
+  getYear,
+  getMonth,
+  getDaysInMonth,
+  getDay,
+  isBefore,
+  isSameDay,
+} from "date-fns";
 import { tr } from "date-fns/locale";
 import { ReactNode } from "react";
 
@@ -33,6 +40,9 @@ export default function CalendarBody() {
     function createCalendarRowCells(calendarRowIndex: number) {
       const calendarRowCells = [];
       const unusedCalendarRowCell = <td className="" />;
+      const currentDate = new Date();
+      const calendarRowCellsInPastStyles = "text-neutral-500";
+      const calendarRowCellInCurrentStyles = "bg-teal-700 rounded";
 
       if (calendarRowIndex === 0) {
         for (
@@ -50,7 +60,37 @@ export default function CalendarBody() {
             firstDayOfMonthIndex +
             1;
           const usedCalendarRowCell = (
-            <td className="text-center">{cellValue}</td>
+            <td
+              className={`text-center ${
+                isBefore(
+                  new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth(),
+                    cellValue + 1,
+                    0,
+                    0,
+                    0,
+                    0
+                  ),
+                  currentDate
+                ) && calendarRowCellsInPastStyles
+              } ${
+                isSameDay(
+                  new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth(),
+                    cellValue,
+                    0,
+                    0,
+                    0,
+                    0
+                  ),
+                  currentDate
+                ) && calendarRowCellInCurrentStyles
+              }`}
+            >
+              {cellValue}
+            </td>
           );
           calendarRowCells.push(usedCalendarRowCell);
         }
@@ -68,7 +108,37 @@ export default function CalendarBody() {
             firstDayOfMonthIndex +
             1;
           const usedCalendarRowCell = (
-            <td className="text-center">{cellValue}</td>
+            <td
+              className={`text-center ${
+                isBefore(
+                  new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth(),
+                    cellValue + 1,
+                    0,
+                    0,
+                    0,
+                    0
+                  ),
+                  currentDate
+                ) && calendarRowCellsInPastStyles
+              } ${
+                isSameDay(
+                  new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth(),
+                    cellValue,
+                    0,
+                    0,
+                    0,
+                    0
+                  ),
+                  currentDate
+                ) && calendarRowCellInCurrentStyles
+              }`}
+            >
+              {cellValue}
+            </td>
           );
           if (cellValue > daysInMonth) {
             calendarRowCells.push(unusedCalendarRowCell);
@@ -89,7 +159,37 @@ export default function CalendarBody() {
           firstDayOfMonthIndex +
           1;
         const usedCalendarRowCell = (
-          <td className="text-center">{cellValue}</td>
+          <td
+            className={`text-center ${
+              isBefore(
+                new Date(
+                  currentDate.getFullYear(),
+                  currentDate.getMonth(),
+                  cellValue + 1,
+                  0,
+                  0,
+                  0,
+                  0
+                ),
+                currentDate
+              ) && calendarRowCellsInPastStyles
+            } ${
+              isSameDay(
+                new Date(
+                  currentDate.getFullYear(),
+                  currentDate.getMonth(),
+                  cellValue,
+                  0,
+                  0,
+                  0,
+                  0
+                ),
+                currentDate
+              ) && calendarRowCellInCurrentStyles
+            }`}
+          >
+            {cellValue}
+          </td>
         );
         calendarRowCells.push(usedCalendarRowCell);
       }
