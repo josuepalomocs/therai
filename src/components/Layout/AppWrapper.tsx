@@ -6,7 +6,7 @@ interface AppWrapperProps {
 
 export default function AppWrapper({ children }: AppWrapperProps) {
   return (
-    <div className="w-screen min-h-screen bg-neutral-900 text-white">
+    <div className="w-screen min-h-screen bg-neutral-900 text-white text-base">
       {children}
     </div>
   );
