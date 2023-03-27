@@ -1,7 +1,8 @@
 import "./index.css";
+import AppWrapper from "./components/Layout/AppWrapper";
 
 function App() {
-  return <div className=""></div>;
+  return <AppWrapper>{}</AppWrapper>;
 }
 
 export default App;
