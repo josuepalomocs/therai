@@ -89,7 +89,7 @@ export default function CalendarBody() {
                 ) && calendarRowCellInCurrentStyles
               }`}
             >
-              {cellValue}
+              <button className="w-full h-full">{cellValue}</button>
             </td>
           );
           calendarRowCells.push(usedCalendarRowCell);
